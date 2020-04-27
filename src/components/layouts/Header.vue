@@ -3,7 +3,7 @@
     <nav class="nav">
       <ul class="nav__list">
         <li class="nav__link"><a href="#">🤝NegoApp</a></li>
-        <li class="nav__link active"><a href="#">🏠 Home</a></li>
+        <li class="nav__link active-link"><a href="#">🏠 Home</a></li>
       </ul>
     </nav>
   </header>
@@ -34,7 +34,10 @@ export default {
     color: #fff;
     width: 50%;
   }
-  .active{
+  .active-link a{
+    font-weight: 700;
+    border-bottom: 1px solid #fff;
     margin-left: auto;
+    padding: .3rem;
   }
 </style>
