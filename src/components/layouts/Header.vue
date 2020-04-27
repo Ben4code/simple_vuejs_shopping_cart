@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
   .nav{
-    background-color: #00b8d4;
+    background-image: linear-gradient(141deg, #1fc8db 0%, #2cb5e8 75%);
     padding: 2rem 15rem;
     box-shadow: 
       0 2px 2px 0 rgba(0,0,0,0.14), 
