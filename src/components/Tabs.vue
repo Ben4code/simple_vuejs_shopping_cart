@@ -6,7 +6,7 @@
     </div>
     <div class="tabs__content">
       <div v-if="loading" class="spinner"></div>
-      <Modal v-else-if="showModal"/>
+      <Modal v-else-if="showModal" @reset="resetApp" :formState="state" />
       <Form v-else :formData="state" @formAInput="getFormAInput" @formBInput="getFormBInput" />
     </div>
   </div>
@@ -19,7 +19,8 @@ import Modal from "@/components/Modal";
 export default {
   name: "Tabs",
   components: {
-    Form, Modal
+    Form,
+    Modal
   },
   data() {
     return {
@@ -35,10 +36,23 @@ export default {
     };
   },
   methods: {
-    checkNegotiate(){
-       if (this.state.formAInput !== null && this.state.formBInput !== null) {
+    checkNegotiate() {
+      if (this.state.formAInput !== null && this.state.formBInput !== null) {
         this.negotiate = true;
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+        }, 500);
+        this.showModal = true;
       }
+    },
+    resetApp() {
+      this.reset = true;
+      this.negotiate = false;
+      this.showModal = false;
+      this.state.formAInput = null;
+      this.state.formBInput = null;
+      this.showModal = false;
     },
     toggleForm(value) {
       if (value === "formA") {
@@ -58,15 +72,6 @@ export default {
       this.state.formBInput = value;
       this.toggleForm("formA");
       this.checkNegotiate();
-    }
-  },
-  watch: {
-    negotiate() {
-      this.loading = true;
-      setTimeout(() => {
-        this.loading = false;
-      }, 2000);
-      this.showModal = true;
     }
   }
 };
@@ -96,9 +101,8 @@ export default {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
     0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
-.active{
+.active {
   background: #085f6d;
-  
 }
 .tabs__content {
   display: flex;

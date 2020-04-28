@@ -2,9 +2,9 @@
   <div>
     <form class="form" @submit.prevent="submitForm()">
       <div>
-        <h5></h5>
         <label for="offer">Enter {{formData.formA ? "Employer" : "Employee"}} Offer</label>
         <input id="offer" class="form__input" type="text" v-model="inputValue" :placeholder="placeHolder" />
+        <span class="errorMessage">{{errorMessage}}</span>
         <button class="form__btn">Send {{formData.formA ? "Employer" : "Employee"}} Offer</button>
       </div>
     </form>
@@ -17,7 +17,8 @@ export default {
   props: ['formData'],
   data() {
     return {
-      inputValue: null
+      inputValue: null,
+      errorMessage: null
     };
   },
   computed:{
@@ -31,15 +32,21 @@ export default {
   },
   methods: {
     submitForm() {
-      if(!this.inputValue){
+      if(!this.inputValue || !Number.isInteger(+this.inputValue)){
+        this.errorMessage = "Please enter a valid number."
+        setTimeout(()=>{
+          this.errorMessage = null;
+        }, 2000)
         return;
       }
       if(this.formData.formA){
-        this.$emit('formAInput', this.inputValue);
+        this.$emit('formAInput', +this.inputValue);
         this.inputValue = null;
+        this.errorMessage = null;
       }else{
-        this.$emit('formBInput', this.inputValue);
+        this.$emit('formBInput', +this.inputValue);
         this.inputValue = null;
+        this.errorMessage = null;
       }
     }
   }
@@ -60,8 +67,7 @@ export default {
   margin-bottom: .3rem;
   
 }
-.form input[type=text]{
-  margin-bottom: 1rem;
+.form input{
   display: block;
   outline: none;
   padding: 1rem;
@@ -76,9 +82,10 @@ export default {
   color: #00b8d4;
 }
 .form__btn{
+  margin-top: 4rem;
   text-transform: uppercase;
   padding: 1rem;
-  display: inline-block;
+  display: block;
   background-image: linear-gradient(141deg, #1fdbbc 0%, #08ac83 75%);
   width: 100%;
   outline: none;
@@ -91,4 +98,10 @@ export default {
       0 3px 1px -2px rgba(0,0,0,0.12), 
       0 1px 5px 0 rgba(0,0,0,0.2);
 }
+.errorMessage{
+  color: red;
+  text-shadow: .1px .1px #000;
+  font-size: 1rem;
+}
+
 </style>

@@ -1,43 +1,63 @@
 <template>
-<div class="modal">
-  <button class="modal__button" @click="showModal = true">
-    Show Modal
-  </button>
-  <transition name="fade" appear>
-    <div class="modal__overlay" v-if="showModal" @click="showModal = false"></div>
-  </transition>
-  <transition name="slide" appear>
-    <div class="modal__content" v-if="showModal">
-      <h4>Success</h4>
-      <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nemo ab esse, debitis praesentium modi non hic magnam possimus suscipit ipsam.</p>
-      <button class="modal__button" @click="showModal=false">Close</button>
-    </div>
-  </transition>
-</div>
+  <div class="modal">
+    <button class="modal__button" @click="showModal = true">Show Modal</button>
+
+    <transition name="fade" appear>
+      <div v-if="showModal" class="modal__overlay" @click="closeModal()"></div>
+    </transition>
+
+    <transition name="slide" appear>
+      <div class="modal__content" v-if="showModal">
+        <h4>{{message.title}}</h4>
+        <p>{{message.body}}</p>
+        <button class="form__btn" @click="closeModal()">Close</button>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <script>
 export default {
-  name:'modal',
-  data(){
-    return{
-      showModal: true
+  name: "modal",
+  props: ["formState"],
+  data() {
+    return {
+      showModal: true,
+      message: {
+        title: '',
+        body: ''
+      }
+    };
+  },
+  created() {
+    if ( this.formState.formBInput <= this.formState.formAInput) {
+      this.message.title = "Success🤝";
+      this.message.body = "You have reached an agreement.";
+    } else {
+      this.message.title = "Negotiation Failed 😞";
+      this.message.body = "You were unable to reach an agreement. Try again.";
+    }
+  },
+  methods: {
+    closeModal() {
+      this.showModal = false;
+      this.$emit('reset', "test");
     }
   }
-}
+};
 </script>
 
 <style>
-.modal{
+.modal {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100vw;
-  /* min-height: 100vh; */
   overflow-x: hidden;
   overflow-y: hidden;
 }
-.modal__button{
+.modal__button {
+  margin-top: 2rem;
   appearance: none;
   outline: none;
   border: none;
@@ -46,25 +66,20 @@ export default {
   display: inline-block;
   padding: 1rem 2.5rem;
   background-image: linear-gradient(141deg, #1fc8db 0%, #2cb5e8 75%);
-  border-radius: .5rem;
+  border-radius: 0.5rem;
   color: #fff;
   font-weight: 700;
   font-size: 1.8rem;
-  box-shadow: 
-      0 2px 2px 0 rgba(0,0,0,0.14), 
-      0 3px 1px -2px rgba(0,0,0,0.12), 
-      0 1px 5px 0 rgba(0,0,0,0.2);
-  transition: .4s ease-out;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+  transition: 0.4s ease-out;
 }
 
-.modal__button:hover{
-  box-shadow: 
-      0 2px 2px 0 rgba(0,0,0,0.14), 
-      0 3px 1px -2px rgba(0,0,0,0.12), 
-      0 1px 5px 0 rgba(0,0,0,0.2);
-  
+.modal__button:hover {
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+    0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
 }
-.modal__overlay{
+.modal__overlay {
   position: absolute;
   width: -100rem;
   height: -100rem;
@@ -73,10 +88,10 @@ export default {
   right: 0;
   bottom: 0;
   z-index: 100;
-  background: rgba(0,0,0,0.7);
+  background: rgba(0, 0, 0, 0.7);
 }
 
-.modal__content{
+.modal__content {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -91,21 +106,20 @@ export default {
 
 /* Fade Effect */
 .fade-enter-active,
-.fade-leave-active{
-  transition: opacity .5s;
+.fade-leave-active {
+  transition: opacity 0.5s;
 }
 .fade-enter,
-.fade-leave-to{
+.fade-leave-to {
   opacity: 0;
 }
 /* Slide Effect */
 .slide-enter-active,
-.slide-leave-active{
-  transition: transform .5s;
+.slide-leave-active {
+  transition: transform 0.5s;
 }
 .slide-enter,
-.slide-leave-to{
-  transform: translateY(-50%) translateX(100vw) ;
+.slide-leave-to {
+  transform: translateY(-50%) translateX(100vw);
 }
-
 </style>
