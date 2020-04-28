@@ -36,24 +36,6 @@ export default {
     };
   },
   methods: {
-    checkNegotiate() {
-      if (this.state.formAInput !== null && this.state.formBInput !== null) {
-        this.negotiate = true;
-        this.loading = true;
-        setTimeout(() => {
-          this.loading = false;
-        }, 500);
-        this.showModal = true;
-      }
-    },
-    resetApp() {
-      this.reset = true;
-      this.negotiate = false;
-      this.showModal = false;
-      this.state.formAInput = null;
-      this.state.formBInput = null;
-      this.showModal = false;
-    },
     toggleForm(value) {
       if (value === "formA") {
         this.state.formA = true;
@@ -72,7 +54,25 @@ export default {
       this.state.formBInput = value;
       this.toggleForm("formA");
       this.checkNegotiate();
-    }
+    },
+    checkNegotiate() {
+      if (this.state.formAInput !== null && this.state.formBInput !== null) {
+        this.negotiate = true;
+        this.loading = true;
+        setTimeout(() => {
+          this.loading = false;
+        }, 800);
+        this.showModal = true;
+      }
+    },
+    resetApp() {
+      this.reset = true;
+      this.negotiate = false;
+      this.showModal = false;
+      this.state.formAInput = null;
+      this.state.formBInput = null;
+      this.showModal = false;
+    },
   }
 };
 </script>

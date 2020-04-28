@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabs Components Tests should mount component 1`] = `
+<div class="tabs">
+  <div class="tabs__header">
+    <h4 class="active tabs__control">Employer</h4>
+    <h4 class="tabs__control">Employee</h4>
+  </div>
+  <div class="tabs__content">
+    <form-stub formdata="[object Object]"></form-stub>
+  </div>
+</div>
+`;

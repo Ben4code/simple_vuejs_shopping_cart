@@ -5,7 +5,7 @@
         <label for="offer">Enter {{formData.formA ? "Employer" : "Employee"}} Offer</label>
         <input id="offer" class="form__input" type="text" v-model="inputValue" :placeholder="placeHolder" />
         <span class="errorMessage">{{errorMessage}}</span>
-        <button class="form__btn">Send {{formData.formA ? "Employer" : "Employee"}} Offer</button>
+        <button type="submit" class="form__btn">Send {{formData.formA ? "Employer" : "Employee"}} Offer</button>
       </div>
     </form>
   </div>
