@@ -6,14 +6,14 @@
 
     <transition name="slide" appear>
       <div class="modal__content" v-if="showModal">
-        <h2>{{message.title}}</h2>
-        <h4>{{message.body}}</h4>
+        <h2 class="modal__title">{{message.title}}</h2>
+        <h4 class="modal__body">{{message.body}}</h4>
         <hr />
-        <p>Weather Report for {{weather.location}}</p>
-        <p>Status: {{weather.status}}</p>
-        <p>Tempreture: {{weather.temp}}</p>
-        <p>Pressure: {{weather.pressure}}</p>
-        <p>Humidity: {{weather.humidity}}</p>
+        <p class="modal__location">The {{weather.location}} Weather Report</p>
+        <p class="modal__status">Sky⛅️ : {{weather.status}}</p>
+        <p class="modal__temp">Tempreture🌡 : {{weather.temp}}C</p>
+        <p class="modal__pressure">Pressure📊 : {{weather.pressure}}mmHg</p>
+        <p class="modal__humidity">Humidity💧 : {{weather.humidity}}</p>
         <button class="form__btn" @click="closeModal()">Close</button>
       </div>
     </transition>
@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { getWeather } from "./Service";
+import { getWeather } from "@/WeatherService.js";
 
 export default {
   name: "modal",
@@ -34,24 +34,16 @@ export default {
         body: ""
       },
       weather: {
-        location: '',
-        status: '',
-        temp: '',
-        pressure: '',
-        humidity: ''
+        location: "",
+        status: "",
+        temp: "",
+        pressure: "",
+        humidity: ""
       }
     };
   },
   created() {
-    const service = getWeather().then(data => data);
-    service.then(weather => {
-      this.weather.location = weather.name;
-      this.weather.temp = weather.main.temp - 273;
-      this.weather.pressure = weather.main.pressure;
-      this.weather.humidity = weather.main.humidity;
-      this.weather.status = weather.weather[0].description;
-    });
-
+    this.updateWeather();
     if (this.formState.formBInput <= this.formState.formAInput) {
       this.message.title = "Success🤝";
       this.message.body = "You have reached an agreement.";
@@ -61,7 +53,17 @@ export default {
     }
   },
   methods: {
-    fetchWeather() {},
+    updateWeather() {
+      getWeather()
+        .then(({ data }) => {
+          this.weather.location = data.name;
+          this.weather.temp = (data.main.temp - 273).toFixed(0);
+          this.weather.pressure = data.main.pressure;
+          this.weather.humidity = data.main.humidity;
+          this.weather.status = data.weather[0].description;
+        })
+        .catch(err => console.log(err));
+    },
     closeModal() {
       this.showModal = false;
       this.$emit("reset", "");
@@ -113,7 +115,7 @@ export default {
   z-index: 100;
   background: rgba(0, 0, 0, 0.7);
 }
-.modal__content p:first-of-type{
+.modal__content p:first-of-type {
   font-weight: 700;
   margin-top: 1rem;
 }

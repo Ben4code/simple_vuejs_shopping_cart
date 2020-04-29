@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1588114686529" clover="3.2.0">
-  <project timestamp="1588114686529" name="All files">
-    <metrics statements="55" coveredstatements="37" conditionals="16" coveredconditionals="14" methods="16" coveredmethods="10" elements="87" coveredelements="61" complexity="0" loc="55" ncloc="55" packages="3" files="6" classes="6"/>
+<coverage generated="1588172470728" clover="3.2.0">
+  <project timestamp="1588172470729" name="All files">
+    <metrics statements="69" coveredstatements="50" conditionals="16" coveredconditionals="14" methods="21" coveredmethods="14" elements="106" coveredelements="78" complexity="0" loc="69" ncloc="69" packages="3" files="7" classes="7"/>
     <package name="src">
-      <metrics statements="6" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <metrics statements="10" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="2"/>
       <file name="App.vue" path="C:\Users\obioh\OneDrive\Desktop\Vue Apps\negoapp\src\App.vue">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="10" count="0" type="stmt"/>
         <line num="11" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
+      </file>
+      <file name="WeatherService.js" path="C:\Users\obioh\OneDrive\Desktop\Vue Apps\negoapp\src\WeatherService.js">
+        <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="2"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="4" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
       </file>
       <file name="main.js" path="C:\Users\obioh\OneDrive\Desktop\Vue Apps\negoapp\src\main.js">
         <metrics statements="3" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
@@ -18,7 +25,7 @@
       </file>
     </package>
     <package name="src.components">
-      <metrics statements="48" coveredstatements="37" conditionals="16" coveredconditionals="14" methods="14" coveredmethods="10"/>
+      <metrics statements="58" coveredstatements="46" conditionals="16" coveredconditionals="14" methods="17" coveredmethods="12"/>
       <file name="Form.vue" path="C:\Users\obioh\OneDrive\Desktop\Vue Apps\negoapp\src\components\Form.vue">
         <metrics statements="16" coveredstatements="12" conditionals="8" coveredconditionals="7" methods="4" coveredmethods="3"/>
         <line num="19" count="8" type="stmt"/>
@@ -39,15 +46,25 @@
         <line num="49" count="1" type="stmt"/>
       </file>
       <file name="Modal.vue" path="C:\Users\obioh\OneDrive\Desktop\Vue Apps\negoapp\src\components\Modal.vue">
-        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="3" coveredmethods="3"/>
-        <line num="22" count="3" type="stmt"/>
-        <line num="31" count="3" type="cond" truecount="2" falsecount="0"/>
-        <line num="32" count="1" type="stmt"/>
-        <line num="33" count="1" type="stmt"/>
-        <line num="35" count="2" type="stmt"/>
-        <line num="36" count="2" type="stmt"/>
-        <line num="41" count="1" type="stmt"/>
-        <line num="42" count="1" type="stmt"/>
+        <metrics statements="18" coveredstatements="17" conditionals="2" coveredconditionals="2" methods="6" coveredmethods="5"/>
+        <line num="24" count="2" type="stmt"/>
+        <line num="30" count="4" type="stmt"/>
+        <line num="46" count="4" type="stmt"/>
+        <line num="47" count="4" type="cond" truecount="2" falsecount="0"/>
+        <line num="48" count="2" type="stmt"/>
+        <line num="49" count="2" type="stmt"/>
+        <line num="51" count="2" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
+        <line num="57" count="4" type="stmt"/>
+        <line num="59" count="1" type="stmt"/>
+        <line num="60" count="1" type="stmt"/>
+        <line num="61" count="1" type="stmt"/>
+        <line num="62" count="1" type="stmt"/>
+        <line num="63" count="1" type="stmt"/>
+        <line num="64" count="1" type="stmt"/>
+        <line num="65" count="0" type="stmt"/>
+        <line num="69" count="1" type="stmt"/>
+        <line num="70" count="1" type="stmt"/>
       </file>
       <file name="Tabs.vue" path="C:\Users\obioh\OneDrive\Desktop\Vue Apps\negoapp\src\components\Tabs.vue">
         <metrics statements="24" coveredstatements="17" conditionals="6" coveredconditionals="5" methods="7" coveredmethods="4"/>
