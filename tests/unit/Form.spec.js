@@ -80,4 +80,25 @@ describe('Form Component Tests', () => {
     expect(wrapper.emitted().formAInput).toBeTruthy();
   });
 
+  test('should set show modal to true.', async() => {
+    const Employeewrapper = shallowMount(Form, {
+      propsData: {
+        formData: {
+          formA: false,  //Employer form tab inactive.
+          formB: true, //Employee form tab active.
+          formAInput: null,
+          formBInput: 90
+        }
+      }
+    })
+    const form = Employeewrapper.find('.form');
+    const input = Employeewrapper.find('.form__input');
+    input.element.value = Employeewrapper.vm.formData.formBInput;
+    input.trigger('input');
+    form.trigger('submit');
+    await Employeewrapper.vm.$nextTick();
+    expect(Employeewrapper.emitted().formBInput).toBeTruthy();
+  });  
+
+
 })

@@ -6,8 +6,14 @@
 
     <transition name="slide" appear>
       <div class="modal__content" v-if="showModal">
-        <h4>{{message.title}}</h4>
-        <p>{{message.body}}</p>
+        <h2>{{message.title}}</h2>
+        <h4>{{message.body}}</h4>
+        <hr />
+        <p>Weather Report for {{weather.location}}</p>
+        <p>Status: {{weather.status}}</p>
+        <p>Tempreture: {{weather.temp}}</p>
+        <p>Pressure: {{weather.pressure}}</p>
+        <p>Humidity: {{weather.humidity}}</p>
         <button class="form__btn" @click="closeModal()">Close</button>
       </div>
     </transition>
@@ -15,6 +21,8 @@
 </template>
 
 <script>
+import { getWeather } from "./Service";
+
 export default {
   name: "modal",
   props: ["formState"],
@@ -22,13 +30,29 @@ export default {
     return {
       showModal: true,
       message: {
-        title: '',
-        body: ''
+        title: "",
+        body: ""
+      },
+      weather: {
+        location: '',
+        status: '',
+        temp: '',
+        pressure: '',
+        humidity: ''
       }
     };
   },
   created() {
-    if ( this.formState.formBInput <= this.formState.formAInput) {
+    const service = getWeather().then(data => data);
+    service.then(weather => {
+      this.weather.location = weather.name;
+      this.weather.temp = weather.main.temp - 273;
+      this.weather.pressure = weather.main.pressure;
+      this.weather.humidity = weather.main.humidity;
+      this.weather.status = weather.weather[0].description;
+    });
+
+    if (this.formState.formBInput <= this.formState.formAInput) {
       this.message.title = "Success🤝";
       this.message.body = "You have reached an agreement.";
     } else {
@@ -37,9 +61,10 @@ export default {
     }
   },
   methods: {
+    fetchWeather() {},
     closeModal() {
       this.showModal = false;
-      this.$emit('reset', "test");
+      this.$emit("reset", "");
     }
   }
 };
@@ -88,8 +113,12 @@ export default {
   z-index: 100;
   background: rgba(0, 0, 0, 0.7);
 }
-
+.modal__content p:first-of-type{
+  font-weight: 700;
+  margin-top: 1rem;
+}
 .modal__content {
+  text-align: center;
   position: fixed;
   top: 50%;
   left: 50%;

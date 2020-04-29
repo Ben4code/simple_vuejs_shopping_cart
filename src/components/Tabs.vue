@@ -66,13 +66,11 @@ export default {
       }
     },
     resetApp() {
-      this.reset = true;
       this.negotiate = false;
       this.showModal = false;
       this.state.formAInput = null;
       this.state.formBInput = null;
-      this.showModal = false;
-    },
+    }
   }
 };
 </script>

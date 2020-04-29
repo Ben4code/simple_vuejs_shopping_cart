@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils';
+import { shallowMount, config } from '@vue/test-utils';
 import Tabs from '@/components/Tabs'
 
 
@@ -40,4 +40,30 @@ describe('Tabs Components Tests', () => {
     expect(wrapper.vm.state.formA).toBe(false);
     expect(wrapper.vm.state.formB).toBe(true);
   });
+
+  test('should reset tab when restApp() is called.', async() => {
+    wrapper.vm.resetApp();
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.negotiate).toBe(false);
+    expect(wrapper.vm.showModal).toBe(false);
+    expect(wrapper.vm.state.formAInput).toBe(null);
+    expect(wrapper.vm.state.formBInput).toBe(null);
+  });  
+
+  test('should set show modal to true.', async() => {
+    wrapper.vm.state.formAInput = 90;
+    wrapper.vm.state.formBInput = 90;
+    wrapper.vm.checkNegotiate();
+    await wrapper.vm.$nextTick();
+    expect(wrapper.vm.negotiate).toBe(true);
+    expect(wrapper.vm.showModal).toBe(true);
+  });  
+
+  // test('should call getFormAInput() on $emit.', async() => {
+  //   // jest.mock('checkNegotiate', ()=>{})
+  //   wrapper.vm.state.formAInput = 90;
+  //   wrapper.vm.getFormAInput(wrapper.vm.state.formAInput);
+  //   await wrapper.vm.$nextTick();
+  //   expect(wrapper.vm.checkNegotiate).toHaveBeenCalled();
+  // });  
 });
