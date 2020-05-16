@@ -1,6 +1,6 @@
 <template>
   <div class="footer">
-    <p>🤝NegoApp {{ currentYear }}</p>
+    <p> Cart App {{ currentYear }}</p>
   </div>
 </template>
 

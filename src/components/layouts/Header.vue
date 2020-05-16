@@ -2,8 +2,8 @@
   <header>
     <nav class="nav">
       <ul class="nav__list">
-        <li class="nav__link"><a href="#">🤝NegoApp</a></li>
-        <li class="nav__link active-link"><a href="#">🏠 Home</a></li>
+        <li class="nav__link"><a href="#">Cart App</a></li>
+        <li class="nav__link active-link"><a href="#">Home</a></li>
       </ul>
     </nav>
   </header>
