@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="col-md-4">
-          <Cart @remove="deleteFromCart" :cart="cart"/>
+          <Cart :cart="cart"/>
         </div>
       </div>
     </div>
@@ -54,10 +54,6 @@ export default {
     },
     isInCart(product){
       return this.cart.find((item)=> item.id === product.id) ? true : false;
-    },
-    deleteFromCart(cartItem){
-      const itemIndex = this.cart.findIndex((item)=> item.id === cartItem.id);
-      this.cart.splice(itemIndex, 1);
     }
   }
 };
